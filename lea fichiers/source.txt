@@ -1,0 +1,17 @@
+Modélisation supervisée : les arbres de décisions
+L'approche de l'apprentissage supervisé en ML consiste à utiliser des jeux de
+ données étiquetés qui entraînent des algorithmes pour classer les données ou
+  prédire des résultats avec précision. Le modèle exploite les données étiquetées
+   pour mesurer la pertinence des différentes caractéristiques afin d'affiner 
+   progressivement l'ajustement du modèle en fonction du résultat connu.
+    Il existe deux grandes catégories d'apprentissage supervisé :
+•	Classification
+Un problème de classification utilise des algorithmes pour classer 
+les données dans des segments spécifiques. Dans la vie quotidienne, 
+il s'agit par exemple des algorithmes qui servent à rejeter les spams 
+arrivant dans une boîte de réception principale ou qui permettent à 
+un utilisateur de bloquer ou de restreindre une personne sur les réseaux sociaux.
+ Voici quelques algorithmes de classification courants : la régression logistique,
+  la méthode des k plus proches voisins, les forêts aléatoires, la classification
+   naïve bayésienne, l'algorithme du gradient stochastique et l'arbre de décision
+   
