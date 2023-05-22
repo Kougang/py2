@@ -45,7 +45,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # Créer et entraîner le classifieur d'arbre de décision
 # clf = DecisionTreeClassifier(max_depth=3, random_state=42) #utilise cart pour la classification a cause de ces parametres
 
-clf = DecisionTreeClassifier(criterion='entropy', max_depth=3, random_state=42)
+clf = DecisionTreeClassifier(criterion='entropy', max_depth=4, random_state=42)
 clf.fit(X_train, y_train)
 
 # Prédire les classes pour l'ensemble de test
@@ -61,7 +61,7 @@ plot_tree(clf, filled=True, feature_names=['Nombre de grossesses',
     'Concentration plasmatique de glucose', 
     'Pression artérielle diastolique', 'Épaisseur du pli cutané du triceps', 
     'Insuline sérique à 2 heures', 'Indice de masse corporelle',
-    'Fonction de généalogie du diabète', 'Âge'],fontsize=9)
+    'Fonction de généalogie du diabète', 'Âge'],class_names=['0', '1'],fontsize=9)
 
 # plot_tree(clf, feature_names=diabetes.feature_names, class_names=["0", "1"], filled=True, fontsize=14, node_size=500)
 
