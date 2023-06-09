@@ -8,20 +8,20 @@ import numpy as np
 
 # dataset
 data = np.array([
-    [1, 1, 1, 0, 0, 0],
-    [2, 1, 1, 1, 0, 0],
-    [3, 0, 1, 0, 1, 1],
-    [4, 2, 1, 0, 1, 1],
-    [5, 2, 0, 0, 1, 1],
-    [6, 2, 0, 1, 0, 0],
-    [7, 0, 0, 1, 1, 1],
-    [8, 1, 2, 0, 0, 0],
-    [9, 1, 0, 0, 1, 1],
-    [10, 2, 2, 0, 1, 1],
-    [11, 1, 2, 1, 1, 1],
-    [12, 0, 2, 1, 1, 1],
-    [13, 0, 1, 0, 1, 1],
-    [14, 2, 2, 1, 0, 0]
+    [1, 1, 0, 0, 0],
+    [1, 1, 1, 0, 0],
+    [0, 1, 0, 1, 1],
+    [2, 1, 0, 1, 1],
+    [2, 0, 0, 1, 1],
+    [2, 0, 1, 0, 0],
+    [0, 0, 1, 1, 1],
+    [1, 2, 0, 0, 0],
+    [1, 0, 0, 1, 1],
+    [2, 2, 0, 1, 1],
+    [1, 2, 1, 1, 1],
+    [0, 2, 1, 1, 1],
+    [0, 1, 0, 1, 1],
+    [2, 2, 1, 0, 0]
 ])
 # print(data)
 
@@ -47,14 +47,7 @@ X_train = np.array([
     [2, 1, 0, 1],
     [2, 0, 0, 1],
     [2, 0, 1, 0],
-    [0, 0, 1, 1]
-    
-])
-
-# ou encore: X_train = data[:, :-1]
-#            y_train = data[:, -1]
-
-X_test = np.array([
+    [0, 0, 1, 1],
     [1, 2, 0, 0],
     [1, 0, 0, 1],
     [2, 2, 0, 1],
@@ -62,39 +55,66 @@ X_test = np.array([
     [0, 2, 1, 1],
     [0, 1, 0, 1],
     [2, 2, 1, 0]
+    
 ])
 
-y_test =  np.array(["non", "oui","oui", "oui", "oui", "oui", "non"])
+# ou encore: X_train = data[:, :-1]
+#            y_train = data[:, -1]
+
+# X_test = np.array([
+#     [1, 2, 0, 0],
+#     [1, 0, 0, 1],
+#     [2, 2, 0, 1],
+#     [1, 2, 1, 1],
+#     [0, 2, 1, 1],
+#     [0, 1, 0, 1],
+#     [2, 2, 1, 0]
+# ])
+
+y_train =  np.array(["non", "oui","oui", "oui", "oui", "oui", "non","non", "non", "oui", "oui", "oui", "non", "oui"])
 
 # les etiquet
 # y_train = np.array([0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0])
 
-y_train = np.array(["non", "non", "oui", "oui", "oui", "non", "oui"])
+# y_train = np.array(["non", "non", "oui", "oui", "oui", "non", "oui"])
 
 
 
 # Entraînez votre modèle en utilisant la méthode fit() de l'objet DecisionTreeClassifier :
 
+# profondeurMaximalDeArbre.fit(X_train, y_train)
+
+profondeurMaximalDeArbre = DecisionTreeClassifier(criterion='entropy', max_depth=2, random_state=42)
 profondeurMaximalDeArbre.fit(X_train, y_train)
+
 
 # Évaluez les performances de votre modèle sur les données de test
 # en utilisant la méthode score() de l'objet DecisionTreeClassifier :
 
-y_perf=profondeurMaximalDeArbre.score(X_test, y_test)
+# =====================================================
+# y_perf=profondeurMaximalDeArbre.score(X_test, y_test)
 
-print("performance du model:",y_perf)
+# print("performance du model:",y_perf)
+# =====================================================
+profondeurMaximalDeArbre = DecisionTreeClassifier(criterion='entropy', max_depth=3, random_state=42)
+profondeurMaximalDeArbre.fit(X_train, y_train)
+
 
 # Enfin, une fois que vous êtes satisfait des performances de 
 # votre modèle, vous pouvez l'utiliser pour faire des prédictions
 # sur de nouvelles données en utilisant la méthode predict() de
 # l'objet DecisionTreeClassifier :
 
+# =====================================================
 
 # Faire des prédictions sur de nouvelles données
-y_pred = profondeurMaximalDeArbre.predict(X_test)
+# y_pred = profondeurMaximalDeArbre.predict(X_test)
 
-accuracy = accuracy_score(y_test, y_pred)
-print("Précision du modèle : {:.2f}".format(accuracy))
+# accuracy = accuracy_score(y_test, y_pred)
+# print("Précision du modèle : {:.2f}".format(accuracy))
+# =====================================================
+
+
 
 # La fonction predict() et la fonction score() sont toutes deux des méthodes de l'objet DecisionTreeClassifier de la bibliothèque scikit-learn utilisé pour entraîner et évaluer un modèle d'arbre de décision.
 
@@ -114,6 +134,6 @@ print("Précision du modèle : {:.2f}".format(accuracy))
 # =======================partie graphique====================
 
 fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(10, 8), dpi=300)
-plot_tree(profondeurMaximalDeArbre, feature_names=["Outlook", "Temperature", "Humidity", "Wind"], class_names=["Don't Play", "Play"], filled=True, ax=axes)
+plot_tree(profondeurMaximalDeArbre, feature_names=["temps", "Temperature", "Humidity", "vent"], class_names=["Don't Play", "Play"], filled=True, ax=axes)
 plt.show()
 

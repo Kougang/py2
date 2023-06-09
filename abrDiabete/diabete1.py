@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 
 
@@ -37,6 +38,12 @@ data = np.loadtxt('diabetes.csv', delimiter=',', skiprows=1)
 X = data[:, :-1]
 y = data[:, -1]
 
+
+# Normaliser les données
+# scaler = StandardScaler()
+# X = scaler.fit_transform(X)
+
+
 # Diviser les données en ensembles d'entraînement et de test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -45,7 +52,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # Créer et entraîner le classifieur d'arbre de décision
 # clf = DecisionTreeClassifier(max_depth=3, random_state=42) #utilise cart pour la classification a cause de ces parametres
 
-clf = DecisionTreeClassifier(criterion='entropy', max_depth=4, random_state=42)
+clf = DecisionTreeClassifier(criterion='entropy', max_depth=3, random_state=42)
 clf.fit(X_train, y_train)
 
 # Prédire les classes pour l'ensemble de test
@@ -61,7 +68,7 @@ plot_tree(clf, filled=True, feature_names=['Nombre de grossesses',
     'Concentration plasmatique de glucose', 
     'Pression artérielle diastolique', 'Épaisseur du pli cutané du triceps', 
     'Insuline sérique à 2 heures', 'Indice de masse corporelle',
-    'Fonction de généalogie du diabète', 'Âge'],class_names=['0', '1'],fontsize=9)
+    'Fonction de généalogie du diabète', 'Âge'],class_names=['NON', 'OUI'],fontsize=9)
 
 # plot_tree(clf, feature_names=diabetes.feature_names, class_names=["0", "1"], filled=True, fontsize=14, node_size=500)
 
